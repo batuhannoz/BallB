@@ -1,25 +1,93 @@
-# BallB
+# Ball-B: Multiplayer Ball Game
 
-2D online soccer game
+A containerized multiplayer ball game platform built with Unity and Go, featuring both public and private match capabilities.
 
 ![](https://github.com/batuhannoz/ball-b/blob/main/pictures/LobbyScreenshot.png)
 
 ![](https://github.com/batuhannoz/ball-b/blob/main/pictures/GameScreenshot.png)
 
-### Unity Documentation
+## 🎮 Features
 
-[Netcode Documentation](https://docs-multiplayer.unity3d.com/netcode/current/about)
+- **Multiplayer Gaming**: Real-time multiplayer ball game experience
+- **Match Types**:
+  - Public matches for quick play
+  - Private matches for playing with friends
+- **Docker Integration**: Each game instance runs in its own container
+- **Dynamic Port Allocation**: Automatic port management for game instances
+- **Match Management**: Create, join, and end game sessions
 
-### YouTube Tutorials
+## 🛠 Technology Stack
 
-[Netcode Multiplayer](https://www.youtube.com/watch?v=stJ4SESQwJQ&t=130s)
+- **Frontend**: Unity Game Engine
+- **Backend**: Go (Fiber framework)
+- **Containerization**: Docker
+- **Networking**: WebSocket for real-time communication
 
-[Global Matchmaking](https://www.youtube.com/watch?v=fdkvm21Y0xE&t=591s)
+## 🚀 Getting Started
 
-[Server Reconciliation && Client Prediction](https://www.youtube.com/watch?v=TFLD9HWOc2k)
+### Prerequisites
 
+- Docker
+- Go 1.x
+- Unity (for development)
 
-#### Open Docker Permissions To All Users
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/ball-b.git
+cd ball-b
+```
+
+2. Build the backend:
+```bash
+cd backend
+go mod download
+go build
+```
+
+3. Build the game container:
+```bash
+docker build -t ball-b-game .
+```
+
+## 🎯 Usage
+
+### Starting the Backend Server
+
+```bash
+cd backend
+go run main.go
+```
+
+### Playing the Game
+
+1. **Host a Public Match**:
+   - Access the game client
+   - Select "Host Public Match"
+   - Wait for other players
+
+2. **Host a Private Match**:
+   - Select "Host Private Match"
+   - Share the match ID with friends
+
+3. **Join a Match**:
+   - Use "Quick Match" for public games
+   - Enter match ID for private games
+
+## 🏗 Project Structure
+
+```
+ball-b/
+├── backend/           # Go backend server
+│   ├── main.go       # Server implementation
+│   └── Dockerfile    # Backend container configuration
+├── game/             # Unity game files
+├── pictures/         # Game assets
+└── Dockerfile        # Game container configuration
+```
+
+### Open Docker Permissions To All Users
 
 ```bash
 sudo chmod 666 /var/run/docker.sock
@@ -53,4 +121,3 @@ docker rm -f $(docker ps -a -q)
 ```bash
 put -R /home/batuhan/Desktop/ball-b/builds/linux_server .
 ```
-
